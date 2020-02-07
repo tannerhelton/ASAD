@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 import Intro from '../Intro';
+import Series from '../../Containers/Series';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: ['Daredevil', 'Psych', 'The Punisher']
+      series: []
     }
   }
 
   componentDidMount() {
-    fetch('http://api.tvmaze.com/search/shows?q=Vikings').then(
-      (res) => { console.log(res) }
-    )
+    fetch('http://api.tvmaze.com/search/shows?q=Vikings')
+    .then(res => res.json())
+    .then(series => this.setState({ series }))
   }
 
   render() {
@@ -24,9 +25,8 @@ class App extends Component {
         </header>
         <Intro message="Ayyee Mr. Clank" />
         The lengs of the series array - {this.state.series.length}
+        <Series />
       </div>
     );
   }
 }
-
-export default App;
