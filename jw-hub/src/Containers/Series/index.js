@@ -19,6 +19,10 @@ export default class Series extends Component {
         fetch(`http://api.tvmaze.com/search/shows?q=${e.target.value}`)
         .then(res => res.json())
         .then(json => this.setState({ series: json, isFetching: false }));
+        console.log(e);
+        console.log(e.target.value);
+        console.log('update = ');
+        console.log(this.state.series);
     }
 
     render() {
